@@ -18,8 +18,8 @@ export function HeroSection() {
           <p className="font-code text-xs md:text-sm uppercase tracking-[0.25em] text-white/60">
             hopeengineer <span aria-hidden="true">·</span> Engineer your hope
           </p>
-          <h1 className="text-[2.6rem] font-headline font-bold tracking-tighter sm:text-6xl md:text-[4rem] lg:text-[4.75rem] leading-[1.05] text-foreground drop-shadow-2xl text-balance">
-            <span className="block">I rebuilt my life from zero.</span>
+          <h1 className="text-[2.35rem] font-headline font-bold tracking-tighter sm:text-[3.25rem] md:text-[3.6rem] lg:text-[4.25rem] leading-[1.05] text-foreground drop-shadow-2xl text-balance">
+            <span className="block">I rebuilt my life from zero in under 2 years.</span>
             <span className="block text-white/70">
               Now I build AI that gives&nbsp;you <span className="text-gradient-primary">your time back.</span>
             </span>
