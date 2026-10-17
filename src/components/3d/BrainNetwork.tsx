@@ -9,8 +9,8 @@ export function BrainNetwork() {
   const linesGeometryRef = useRef<THREE.BufferGeometry>(null);
   const groupRef = useRef<THREE.Group>(null);
   
-  // Increased particle count from 300 to 500 to ensure high density at the bottom of the scroll journey
-  const particleCount = 500;
+  // 400 nodes: 20% fewer than before for a calmer background, still dense enough along the scroll journey
+  const particleCount = 400;
   
   const { positions, velocities } = useMemo(() => {
     const positions = new Float32Array(particleCount * 3);
@@ -24,10 +24,10 @@ export function BrainNetwork() {
         // Z axis stringing to fly through: from +25 down to -85
         positions[i * 3 + 2] = 25 - (Math.random() * 110); // Z
 
-        // Very slow organic drift velocities (reduced 33% further for calmness)
-        velocities[i * 3] = (Math.random() - 0.5) * 0.025;
-        velocities[i * 3 + 1] = (Math.random() - 0.5) * 0.025;
-        velocities[i * 3 + 2] = (Math.random() - 0.5) * 0.025;
+        // Very slow organic drift velocities (20% slower again for calmness)
+        velocities[i * 3] = (Math.random() - 0.5) * 0.02;
+        velocities[i * 3 + 1] = (Math.random() - 0.5) * 0.02;
+        velocities[i * 3 + 2] = (Math.random() - 0.5) * 0.02;
     }
     return { positions, velocities };
   }, [particleCount]);
@@ -69,7 +69,7 @@ export function BrainNetwork() {
   useFrame((state, delta) => {
     // Optional global rotation for depth feel
     if (groupRef.current) {
-        groupRef.current.rotation.y += delta * 0.02;
+        groupRef.current.rotation.y += delta * 0.016;
     }
 
     // 1. Drift positions
