@@ -17,7 +17,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   if (!post) return { title: 'Post Not Found' };
   
   return {
-    title: `${post.title} | HopeEngineer`,
+    title: post.title, // the layout's title template adds " | HopeEngineer"
     description: post.description || post.excerpt,
     openGraph: {
       title: post.title,
