@@ -180,7 +180,7 @@ const AboutPage = () => {
           </div>
           <div className="pt-4">
             <Button asChild size="lg" className="bg-primary hover:bg-primary/90 text-primary-foreground font-semibold px-10 h-14 text-lg rounded-full shadow-lg shadow-primary/25 transition-transform hover:scale-105">
-              <Link href="mailto:csoft.sameera@gmail.com">
+              <Link href="mailto:info@hopeengineer.com">
                 Reach Out
               </Link>
             </Button>

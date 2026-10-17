@@ -8,7 +8,7 @@ export const metadata: Metadata = {
   alternates: { canonical: '/terms' },
 };
 
-const CONTACT_EMAIL = 'csoft.sameera@gmail.com';
+const CONTACT_EMAIL = 'info@hopeengineer.com';
 
 export default function TermsPage() {
   return (

@@ -6,7 +6,7 @@ import { Button } from '@/components/ui/button';
 import { bestPosts } from '@/lib/proof';
 import { WaveCards } from './WaveCards';
 
-const PORTRAIT = 'https://i.imgur.com/uiFxqeG.jpeg';
+const PORTRAIT = '/images/sameera-portrait.jpg';
 
 const products = [
   { href: '#threadify', logo: '/images/threadify-logo.png', name: 'Threadify', job: 'Turns your posts into leads', short: 'Posts into leads' },
