@@ -28,6 +28,9 @@ export function ScrollSection({
 
     const el = contentRef.current;
 
+    // Respect reduced motion: leave the content visible and skip the reveal
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
     // Set initial state
     gsap.set(el, { y: yOffset, opacity: 0 });
 
@@ -63,6 +66,8 @@ export function ScrollSection({
       <div 
         ref={contentRef} 
         className="w-full h-full pointer-events-auto"
+        // Keyboard users can tab into a section before its reveal fires; show it immediately
+        onFocusCapture={() => gsap.set(contentRef.current, { y: 0, opacity: 1 })}
       >
         {children}
       </div>

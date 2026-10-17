@@ -8,7 +8,7 @@ import { SOCIAL_LINKS } from "@/lib/data";
 import { Compass, Flame, RefreshCcw, ShieldAlert } from "lucide-react";
 
 export const metadata: Metadata = {
-  title: 'About Sameera | HopeEngineer',
+  title: 'About Sameera',
   description: 'A former software engineer who walked away from a stable life in the UK, overcame destructive habits, and rebuilt from scratch in Sri Lanka to create S-ION.',
   alternates: {
     canonical: '/about',
@@ -153,6 +153,17 @@ const AboutPage = () => {
               </div>
             </CardContent>
           </Card>
+        </div>
+
+        {/* What I build now */}
+        <div className="mb-32 text-center space-y-8">
+          <h3 className="text-3xl font-headline text-white font-semibold">What I build now</h3>
+          <p className="text-lg text-muted-foreground leading-relaxed max-w-2xl mx-auto">
+            Since coming home I have built <strong className="text-white">Threadify</strong>, a lead generation agent that 2,000+ creators have signed up to, and <strong className="text-white">Sharpy</strong>, a Mac video editor that cuts footage by itself.
+          </p>
+          <Button asChild size="lg" variant="outline" className="border-white/20 hover:bg-white/10 hover:text-white glass font-semibold rounded-full px-8">
+            <Link href="/ai-apps">Explore my AI apps</Link>
+          </Button>
         </div>
 
         {/* Connect Section */}

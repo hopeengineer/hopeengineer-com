@@ -113,6 +113,18 @@
       "description": "Image for the fourth blog post about productivity.",
       "imageUrl": "https://images.unsplash.com/photo-1735825764451-d2186b7f4bf9?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw4fHxwcm9kdWN0aXZpdHklMjB0b29sc3xlbnwwfHx8fDE3NjA3NzU2NTV8MA&ixlib=rb-4.1.0&q=80&w=1080",
       "imageHint": "productivity tools"
+    },
+    {
+      "id": "app-threadify",
+      "description": "Threadify logo.",
+      "imageUrl": "/images/threadify-logo.png",
+      "imageHint": "app icon"
+    },
+    {
+      "id": "app-sharpy",
+      "description": "Sharpy logo.",
+      "imageUrl": "/images/sharpy-icon.png",
+      "imageHint": "app icon"
     }
   ]
 }

@@ -48,6 +48,9 @@ export default async function Image() {
         />
         <h1
           style={{
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
             fontSize: '80px',
             fontWeight: 700,
             letterSpacing: '-0.02em',
@@ -55,9 +58,8 @@ export default async function Image() {
             lineHeight: 1.1,
           }}
         >
-          Engineer Your Hope,
-          <br />
-          Build Your Future.
+          <span>Engineer Your Hope,</span>
+          <span>Build Your Future.</span>
         </h1>
         <p
           style={{

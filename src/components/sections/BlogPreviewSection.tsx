@@ -31,6 +31,8 @@ export function BlogPreviewSection() {
     fetchPosts();
   }, [supabase]);
 
+  if (!isLoading && latestPosts.length === 0) return null;
+
   return (
     <ScrollSection triggerOffset="top 80%" className="min-h-screen py-24 md:py-32 flex flex-col justify-center">
       <div className="container px-4 md:px-6 z-10 w-full">

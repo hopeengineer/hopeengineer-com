@@ -18,13 +18,13 @@ export function AboutSection() {
           
           <div className="space-y-6 text-muted-foreground md:text-lg font-body leading-relaxed max-w-2xl mx-auto text-left sm:text-center">
             <p>
-              I left a stable tech career in the UK at a time when most people would have stayed. From the outside, my life looked "figured out," but behind the scenes, I was losing control to a lifestyle of escaping reality.
+              I left a stable tech career in the UK at a time when most people would have stayed. From the outside, my life looked &quot;figured out&quot;. Behind the scenes, I was losing control to a lifestyle of escaping reality.
             </p>
             <p>
-              In August 2023, I hit a profound breaking point. I made the decision to walk away from everything - quitting substances, leaving the UK, and returning to Sri Lanka to completely reset. 
+              In August 2023, I hit a breaking point. I walked away from everything: I quit substances, left the UK and returned to Sri Lanka to completely reset.
             </p>
             <p className="text-sm md:text-base border-t border-white/10 pt-6 mt-6 text-white/70">
-              That pain turned into direction. Today, my engineering flows exclusively through <strong className="text-white">S-ION</strong> - building scalable technology and AI systems designed not for validation, but to create real impact and redirection for others.
+              That pain turned into direction. Today, my engineering flows exclusively through <strong className="text-white">S-ION</strong>, building scalable technology and AI systems designed not for validation, but for real impact and redirection for others.
             </p>
           </div>
           

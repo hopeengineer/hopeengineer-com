@@ -1,6 +1,6 @@
 
 
-import { Facebook, Instagram, AtSign, Youtube } from "lucide-react";
+import { Facebook, Instagram, AtSign, Youtube, Github } from "lucide-react";
 import { MediumIcon, SubstackIcon } from "@/components/icons";
 import type { ImagePlaceholder } from './placeholder-images';
 import { PlaceHolderImages } from './placeholder-images';
@@ -30,6 +30,7 @@ export const NAV_LINKS = [
 
 export const SOCIAL_LINKS = [
   { name: "Threads", href: "https://www.threads.com/@hopeengineer", icon: AtSign },
+  { name: "GitHub", href: "https://github.com/hopeengineer", icon: Github },
   { name: "Instagram", href: "https://www.instagram.com/hopeengineer", icon: Instagram },
   { name: "Facebook", href: "https://www.facebook.com/thehopeengineer", icon: Facebook },
   { name: "Medium", href: "https://medium.com/@hopeengineer", icon: MediumIcon },
@@ -144,24 +145,24 @@ export const services = [
 export const aiApps = [
   {
     title: "Threadify",
-    description: "The ultimate AI-powered growth engine and scheduling platform designed exclusively for Threads creators.",
-    image: getImage('ai-app-1'),
-    href: "https://www.threadify.app/plans",
+    description: "Your lead generation agent. It writes in your voice, publishes to Threads, X, LinkedIn and YouTube, and tracks which posts bring in leads. 2,000+ creators signed up.",
+    image: getImage('app-threadify'),
+    href: "https://www.threadify.app/home",
     status: 'Available',
-    badge: 'Free',
+    badge: 'Live',
+  },
+  {
+    title: "Sharpy",
+    description: "A Mac video editor that cuts your footage by itself. It reads what is said and what is on screen, and every cut carries the reason it was made.",
+    image: getImage('app-sharpy'),
+    href: "https://sharpy.live",
+    status: 'Available',
+    badge: 'Early access',
   },
   {
     title: "Automated Code Documenter",
     description: "Automatically generate clear and concise documentation for your codebases, saving you hours of work.",
     image: getImage('ai-app-2'),
-    href: "#",
-    status: 'Coming Soon',
-    badge: 'Coming Soon',
-  },
-  {
-    title: "Social Media Post Crafter",
-    description: "Create engaging and platform-optimized social media posts in seconds with our AI-powered writer.",
-    image: getImage('ai-app-3'),
     href: "#",
     status: 'Coming Soon',
     badge: 'Coming Soon',

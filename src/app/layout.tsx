@@ -27,20 +27,23 @@ const sourceCodePro = Source_Code_Pro({
   variable: '--font-source-code-pro',
 });
 
+const SITE_DESCRIPTION =
+  'Exploring the intersection of technology, personal growth, and artificial intelligence. Builder of Threadify and Sharpy.';
+
 export const metadata: Metadata = {
-  metadataBase: new URL('https://hopeengineer.info'),
+  metadataBase: new URL('https://hopeengineer.com'),
   title: {
     default: 'HopeEngineer Hub | Engineer Your Hope',
     template: '%s | HopeEngineer',
   },
-  description: 'Exploring the intersection of technology, personal growth, and artificial intelligence.',
+  description: SITE_DESCRIPTION,
   alternates: {
     canonical: '/',
   },
   openGraph: {
     title: 'HopeEngineer Hub | Engineer Your Hope',
-    description: 'Exploring the intersection of technology, personal growth, and artificial intelligence.',
-    url: 'https://hopeengineer.info',
+    description: SITE_DESCRIPTION,
+    url: 'https://hopeengineer.com',
     siteName: 'HopeEngineer',
     locale: 'en_US',
     type: 'website',
@@ -48,7 +51,7 @@ export const metadata: Metadata = {
   twitter: {
     card: 'summary_large_image',
     title: 'HopeEngineer Hub | Engineer Your Hope',
-    description: 'Exploring the intersection of technology, personal growth, and artificial intelligence.',
+    description: SITE_DESCRIPTION,
   },
   icons: {
     icon: '/images/profile-circle.png',

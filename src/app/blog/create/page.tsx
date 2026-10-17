@@ -312,7 +312,7 @@ export default function CreateBlogPostPage() {
                      </div>
                      <div className="flex flex-col">
                         <span className="text-xs text-slate-800 leading-none">HopeEngineer</span>
-                        <span className="text-[10px] text-slate-500 leading-none">https://hopeengineer.info › blog {activeSlug ? `› ${activeSlug}` : ''}</span>
+                        <span className="text-[10px] text-slate-500 leading-none">https://hopeengineer.com › blog {activeSlug ? `› ${activeSlug}` : ''}</span>
                      </div>
                   </div>
                   <h3 className="text-[#1a0dab] text-lg hover:underline cursor-pointer truncate leading-tight">

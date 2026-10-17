@@ -26,7 +26,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
       publishedTime: post.date,
       modifiedTime: post.updated_at || post.date,
       authors: [post.author || 'HopeEngineer'],
-      url: `https://hopeengineer.info/blog/${post.slug}`,
+      url: `https://hopeengineer.com/blog/${post.slug}`,
       images: [
         {
           url: post.image_url || `https://picsum.photos/seed/${post.slug}/1200/630`,
@@ -71,7 +71,7 @@ export default async function BlogPost({ params }: { params: Promise<{ slug: str
     '@type': 'BlogPosting',
     mainEntityOfPage: {
       '@type': 'WebPage',
-      '@id': `https://hopeengineer.info/blog/${post.slug}`
+      '@id': `https://hopeengineer.com/blog/${post.slug}`
     },
     headline: post.title,
     description: post.description || post.excerpt,
@@ -81,14 +81,14 @@ export default async function BlogPost({ params }: { params: Promise<{ slug: str
     author: {
       '@type': 'Person',
       name: post.author || 'HopeEngineer',
-      url: 'https://hopeengineer.info/about'
+      url: 'https://hopeengineer.com/about'
     },
     publisher: {
       '@type': 'Organization',
       name: 'HopeEngineer Hub',
       logo: {
         '@type': 'ImageObject',
-        url: 'https://hopeengineer.info/images/profile-circle.png'
+        url: 'https://hopeengineer.com/images/profile-circle.png'
       }
     }
   };

@@ -17,7 +17,7 @@ export function ServicesSection() {
             Scalable Systems <br/> & Architecture
           </h3>
           <p className="max-w-[700px] mt-6 text-muted-foreground md:text-xl font-body">
-            From high-performance web infrastructure to AI-driven automation, I build robust, production-ready technology designed to scale seamlessly and create real impact.
+            From high-performance web infrastructure to AI-driven automation, I build production-ready technology that scales and creates real impact.
           </p>
         </div>
 

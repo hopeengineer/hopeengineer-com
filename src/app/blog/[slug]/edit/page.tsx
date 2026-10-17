@@ -337,7 +337,7 @@ export default function EditBlogPostPage() {
                      </div>
                      <div className="flex flex-col">
                         <span className="text-xs text-slate-800 leading-none">HopeEngineer</span>
-                        <span className="text-[10px] text-slate-500 leading-none">https://hopeengineer.info › blog › {post?.slug}</span>
+                        <span className="text-[10px] text-slate-500 leading-none">https://hopeengineer.com › blog › {post?.slug}</span>
                      </div>
                   </div>
                   <h3 className="text-[#1a0dab] text-lg hover:underline cursor-pointer truncate leading-tight mt-1">

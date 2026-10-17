@@ -15,6 +15,14 @@ const Footer = () => {
             &copy; {currentYear} HopeEngineer Hub.
           </p>
         </div>
+        <nav aria-label="Products" className="flex items-center gap-6 font-code text-xs uppercase tracking-widest">
+          <a href="https://sharpy.live" target="_blank" rel="noopener noreferrer" className="inline-flex h-11 items-center rounded-sm text-white/50 transition-colors hover:text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring">
+            Sharpy
+          </a>
+          <a href="https://www.threadify.app/home" target="_blank" rel="noopener noreferrer" className="inline-flex h-11 items-center rounded-sm text-white/50 transition-colors hover:text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring">
+            Threadify
+          </a>
+        </nav>
         <div className="flex items-center space-x-4">
           {SOCIAL_LINKS.map((social) => (
             <Link key={social.name} href={social.href} target="_blank" rel="noopener noreferrer">
