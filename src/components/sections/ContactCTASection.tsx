@@ -3,7 +3,7 @@
 import { ContactForm } from '@/components/contact-form';
 import { ScrollSection } from '../scroll/ScrollSection';
 
-// The closing section of the home page: the contact form every "Work with me" link points to (#contact).
+// The closing section of the home page: the contact form the offers' "Details" buttons point to (#contact).
 export function ContactCTASection() {
   return (
     <ScrollSection triggerOffset="top 80%" className="py-20 md:py-32 lg:min-h-screen flex items-center justify-center">

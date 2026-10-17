@@ -1,12 +1,45 @@
 'use client';
 
-import { ChevronDown } from 'lucide-react';
+import { ArrowRight, ChevronDown } from 'lucide-react';
 import Image from 'next/image';
 import { Button } from '@/components/ui/button';
 import { bestPosts } from '@/lib/proof';
 import { WaveCards } from './WaveCards';
 
 const PORTRAIT = 'https://i.imgur.com/uiFxqeG.jpeg';
+
+const products = [
+  { href: '#threadify', logo: '/images/threadify-logo.png', name: 'Threadify', job: 'Turns your posts into leads', short: 'Posts into leads' },
+  { href: '#sharpy', logo: '/images/sharpy-icon.png', name: 'Sharpy', job: 'Edits your videos by itself', short: 'Edits video itself' },
+];
+
+// The two products as chips in one row; each jumps to its section further down the page.
+// On phones they get smaller, and the row swipes sideways if it still doesn't fit.
+function ProductChips({ className = '' }: { className?: string }) {
+  return (
+    <ul
+      className={`pointer-events-auto flex snap-x snap-mandatory flex-row flex-nowrap gap-2 overflow-x-auto [scrollbar-width:none] sm:gap-3 [&::-webkit-scrollbar]:hidden ${className}`}
+      aria-label="What I build"
+    >
+      {products.map((product) => (
+        <li key={product.name} className="shrink-0 snap-start">
+          <a
+            href={product.href}
+            className="group flex items-center gap-2 rounded-full border border-white/10 bg-black/50 py-1.5 pl-1.5 pr-3 text-left backdrop-blur-md transition-colors hover:border-primary/50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring sm:gap-3 sm:py-2 sm:pl-2 sm:pr-5"
+          >
+            <Image src={product.logo} alt="" width={40} height={40} className="h-8 w-8 rounded-full sm:h-10 sm:w-10" />
+            <span className="flex flex-col whitespace-nowrap leading-tight">
+              <span className="text-sm font-headline font-bold text-foreground sm:text-base">{product.name}</span>
+              <span className="text-[11px] text-white/60 sm:hidden">{product.short}</span>
+              <span className="hidden text-sm text-white/60 sm:inline">{product.job}</span>
+            </span>
+            <ArrowRight className="ml-1 hidden h-4 w-4 shrink-0 text-white/40 transition-transform group-hover:translate-x-1 group-hover:text-primary sm:block" aria-hidden="true" />
+          </a>
+        </li>
+      ))}
+    </ul>
+  );
+}
 
 export function HeroSection() {
   return (
@@ -30,9 +63,12 @@ export function HeroSection() {
               Now I build AI that gives you <span className="text-gradient-primary font-semibold">your time back.</span>
             </p>
           </div>
-          <Button asChild size="lg" className="pointer-events-auto mt-10 hidden w-[220px] lg:inline-flex bg-primary hover:bg-primary/90 text-primary-foreground shadow-lg shadow-primary/20 font-semibold text-base py-6">
-            <a href="#contact">Work with me</a>
-          </Button>
+          <div className="mt-10 hidden flex-col items-start gap-6 lg:flex">
+            <ProductChips />
+            <Button asChild size="lg" className="pointer-events-auto w-[220px] bg-primary hover:bg-primary/90 text-primary-foreground shadow-lg shadow-primary/20 font-semibold text-base py-6">
+              <a href="#services">Work with me</a>
+            </Button>
+          </div>
         </div>
 
         {/* One focal visual: me. On smaller screens the wave runs behind the photo, full width. */}
@@ -50,9 +86,10 @@ export function HeroSection() {
           </div>
         </div>
 
-        {/* Phones and tablets: the button sits below the photo */}
-        <Button asChild size="lg" className="pointer-events-auto mx-auto mt-4 w-full sm:w-[260px] lg:hidden bg-primary hover:bg-primary/90 text-primary-foreground shadow-lg shadow-primary/20 font-semibold text-base py-6">
-          <a href="#contact">Work with me</a>
+        {/* Phones and tablets: the products, then the button, below the photo */}
+        <ProductChips className="-mx-4 mt-4 w-[calc(100%+2rem)] px-4 [&>li:first-child]:ml-auto [&>li:last-child]:mr-auto lg:hidden" />
+        <Button asChild size="lg" className="pointer-events-auto mx-auto -mt-4 w-full sm:w-[260px] lg:hidden bg-primary hover:bg-primary/90 text-primary-foreground shadow-lg shadow-primary/20 font-semibold text-base py-6">
+          <a href="#services">Work with me</a>
         </Button>
       </div>
 

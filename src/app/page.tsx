@@ -37,11 +37,12 @@ export default function Home() {
     };
   }, []);
 
-  // Arriving from another page at /#contact (nav link, or the old /work-with-me address): the browser's own jump
-  // happens before the sections and blog posts finish laying out, so scroll to the form once they have
+  // Arriving from another page at /#services or /#contact (nav link, or the old /work-with-me address): the browser's
+  // own jump happens before the sections and blog posts finish laying out, so scroll there once they have
   useEffect(() => {
-    if (window.location.hash !== '#contact') return;
-    const go = () => document.getElementById('contact')?.scrollIntoView({ block: 'start' });
+    const id = window.location.hash.slice(1);
+    if (id !== 'services' && id !== 'contact') return;
+    const go = () => document.getElementById(id)?.scrollIntoView({ block: 'start' });
     const timers = [setTimeout(go, 500), setTimeout(go, 1600)];
     return () => timers.forEach(clearTimeout);
   }, []);
@@ -58,7 +59,7 @@ export default function Home() {
             <div key={project.id} className="snap-section w-full"><ProjectSection project={project} /></div>
           ))}
         </section>
-        <div className="snap-section w-full"><ServicesSection /></div>
+        <div id="services" className="snap-section w-full scroll-mt-20"><ServicesSection /></div>
         <div className="snap-section w-full"><BlogPreviewSection /></div>
         <div className="snap-section w-full"><TestimonialsSection /></div>
         <div id="contact" className="snap-section w-full scroll-mt-20"><ContactCTASection /></div>

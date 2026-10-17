@@ -55,19 +55,11 @@ export function ServicesSection() {
                 />
                 
                 <div className="mt-8">
-                  {service.externalUrl ? (
-                    <Button variant="outline" className="glass border-white/20 hover:bg-primary/20 hover:border-primary/50" asChild>
-                      <Link href={service.externalUrl} target="_blank" rel="noopener noreferrer">
-                        Explore <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
-                      </Link>
-                    </Button>
-                  ) : (
-                    <Button variant="outline" className="glass border-white/20 hover:bg-primary/20 hover:border-primary/50" asChild>
-                      <Link href="/#contact">
-                        Details <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
-                      </Link>
-                    </Button>
-                  )}
+                  <Button variant="outline" className="glass border-white/20 hover:bg-primary/20 hover:border-primary/50" asChild>
+                    <Link href="/#contact">
+                      Details <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
+                    </Link>
+                  </Button>
                 </div>
               </div>
             </div>

@@ -2,9 +2,9 @@
 import type {NextConfig} from 'next';
 
 const nextConfig: NextConfig = {
-  // Work With Me is now the contact form at the bottom of the home page
+  // Work With Me is now the offers section on the home page
   async redirects() {
-    return [{ source: '/work-with-me', destination: '/#contact', permanent: true }];
+    return [{ source: '/work-with-me', destination: '/#services', permanent: true }];
   },
   typescript: {
     ignoreBuildErrors: true,
