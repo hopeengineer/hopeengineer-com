@@ -1,6 +1,9 @@
 import { MetadataRoute } from 'next';
 import { createClient } from '@supabase/supabase-js';
 
+// Rebuild at most hourly so newly published posts show up without a redeploy
+export const revalidate = 3600;
+
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const baseUrl = 'https://hopeengineer.com';
   
@@ -15,6 +18,12 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     lastModified: new Date(),
     changeFrequency: 'weekly' as const,
     priority: route === '' ? 1.0 : 0.8,
+  }));
+
+  const legalRoutes = ['/privacy', '/terms'].map((route) => ({
+    url: `${baseUrl}${route}`,
+    changeFrequency: 'yearly' as const,
+    priority: 0.3,
   }));
 
   try {
@@ -35,10 +44,10 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       priority: 0.7,
     }));
 
-    return [...staticRoutes, ...blogRoutes];
+    return [...staticRoutes, ...blogRoutes, ...legalRoutes];
   } catch (error) {
     console.error('Failed to generate sitemap for blog posts:', error);
     // If Supabase fails, return at least the static routes to Google
-    return staticRoutes;
+    return [...staticRoutes, ...legalRoutes];
   }
 }

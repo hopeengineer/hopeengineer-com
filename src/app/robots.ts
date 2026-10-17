@@ -12,7 +12,10 @@ export default function robots(): MetadataRoute.Robots {
         '/blog/create', 
         '/blog/*/edit', 
         '/login', 
-        '/signup'
+        '/signup',
+        '/inbox',
+        '/profile',
+        '/api/',
       ],
     },
     sitemap: `${baseUrl}/sitemap.xml`,
