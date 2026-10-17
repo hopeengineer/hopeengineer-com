@@ -21,7 +21,7 @@ export function ServicesSection() {
           </p>
         </div>
 
-        <div className="grid md:grid-cols-3 gap-6 lg:gap-8">
+        <div className="grid md:grid-cols-2 gap-6 lg:gap-8 max-w-5xl mx-auto">
           {services.map((service, i) => (
             <div 
               key={service.id} 
@@ -34,7 +34,7 @@ export function ServicesSection() {
                     src={service.image.imageUrl}
                     alt={service.title}
                     fill
-                    style={{ objectFit: 'cover' }}
+                    style={{ objectFit: 'cover', objectPosition: 'center 72%' }}
                     className="transition-transform duration-700 group-hover:scale-110"
                     data-ai-hint={service.image.imageHint}
                   />

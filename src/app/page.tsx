@@ -9,6 +9,7 @@ import { AboutSection } from '@/components/sections/AboutSection';
 import { ProjectSection } from '@/components/sections/ProjectSection';
 import { ServicesSection } from '@/components/sections/ServicesSection';
 import { BlogPreviewSection } from '@/components/sections/BlogPreviewSection';
+import { TestimonialsSection } from '@/components/sections/TestimonialsSection';
 import { ContactCTASection } from '@/components/sections/ContactCTASection';
 import { projects } from '@/lib/projects';
 
@@ -59,6 +60,7 @@ export default function Home() {
         </section>
         <div className="snap-section w-full"><ServicesSection /></div>
         <div className="snap-section w-full"><BlogPreviewSection /></div>
+        <div className="snap-section w-full"><TestimonialsSection /></div>
         <div id="contact" className="snap-section w-full scroll-mt-20"><ContactCTASection /></div>
       </div>
     </div>

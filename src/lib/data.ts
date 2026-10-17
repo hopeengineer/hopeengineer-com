@@ -116,19 +116,6 @@ export const services = [
     image: getImage('service-sessions'),
   },
   {
-    id: "full-circle",
-    title: "Full Circle ⭕",
-    tagline: "Where community becomes the engine for your impact",
-    description: [
-      "Join our paid school, led by me, <a href='https://www.threads.com/@lennox_saint' target='_blank' rel='noopener noreferrer' class='font-medium text-foreground hover:text-accent transition-colors' style='text-decoration:none;'>Lennox</a>, and <a href='https://www.threads.com/@yassylindsay' target='_blank' rel='noopener noreferrer' class='font-medium text-foreground hover:text-accent transition-colors' style='text-decoration:none;'>Yassmine</a>. This isn't just a course; it's a collaborative ecosystem. We merge group lessons with personalized guidance to build your influence together.",
-      "✓ Group Coaching with 3 Experts",
-      "✓ Shared Viral-Worthy Content Labs",
-      "✓ Systems for Co-Growth & Monetization",
-    ],
-    image: getImage('service-community'),
-    externalUrl: "https://www.skool.com/fullcircle/about?ref=36dd7937f1d147e08aecf5a3e8dcdbb9",
-  },
-  {
     id: "ai-automation",
     title: "AI Automation",
     tagline: "Build your legacy, not your workload",

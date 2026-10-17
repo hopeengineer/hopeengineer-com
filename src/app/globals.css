@@ -181,9 +181,22 @@
   to { transform: translateX(-50%); }
 }
 
+/* Testimonial rows glide sideways; hovering a row pauses it */
+.testimonial-track {
+  animation-name: marquee;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+}
+@media (hover: hover) {
+  .testimonial-row:hover .testimonial-track {
+    animation-play-state: paused;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   .wave-card,
-  .marquee-track {
+  .marquee-track,
+  .testimonial-track {
     animation-play-state: paused;
   }
 }
