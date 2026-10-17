@@ -47,17 +47,10 @@ export function HeroSection() {
           ))}
         </ul>
 
-        <div className="flex flex-col gap-4 min-[400px]:flex-row justify-center mt-8 w-full sm:w-auto">
-          <Link href="/work-with-me">
-            <Button size="lg" className="w-full sm:w-[220px] bg-primary hover:bg-primary/90 text-primary-foreground shadow-lg shadow-primary/20 backdrop-blur-md font-semibold text-base py-6">
-              Start a Project
-            </Button>
-          </Link>
-          <Link href="/blog">
-            <Button size="lg" variant="outline" className="w-full sm:w-[220px] border-white/20 hover:bg-white/10 hover:text-white glass font-semibold text-base py-6">
-              Explore Thinking
-            </Button>
-          </Link>
+        <div className="flex justify-center mt-8 w-full sm:w-auto">
+          <Button asChild size="lg" className="w-full sm:w-[220px] bg-primary hover:bg-primary/90 text-primary-foreground shadow-lg shadow-primary/20 backdrop-blur-md font-semibold text-base py-6">
+            <Link href="/work-with-me">Work with me</Link>
+          </Button>
         </div>
       </div>
 
