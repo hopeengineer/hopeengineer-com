@@ -60,7 +60,7 @@ export default async function BlogPage() {
                   <article className="glass-card p-6 md:p-8 flex flex-col md:flex-row gap-8 items-center transition-all duration-500 overflow-hidden relative">
                     
                     {/* Left: Image (if applicable) or Abstract block */}
-                    <div className="w-full md:w-1/3 aspect-[4/3] relative rounded-lg overflow-hidden shrink-0 border border-white/10">
+                    <div className="w-full md:w-1/3 aspect-video relative rounded-lg overflow-hidden shrink-0 border border-white/10">
                       <div className="absolute inset-0 bg-primary/20 mix-blend-overlay z-10 group-hover:bg-transparent transition-all duration-500"></div>
                       <Image
                         src={post.image_url || `https://picsum.photos/seed/${post.slug}/600/400`}

@@ -4,7 +4,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { Button } from "@/components/ui/button";
-import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
+import { Sheet, SheetContent, SheetDescription, SheetTitle, SheetTrigger } from "@/components/ui/sheet";
 import { Menu, User, LogOut, Code, Inbox } from "lucide-react";
 import { NAV_LINKS } from "@/lib/data";
 import { cn } from "@/lib/utils";
@@ -67,6 +67,8 @@ const Header = () => {
                 </Button>
               </SheetTrigger>
               <SheetContent side="left" className="bg-background/80 backdrop-blur-2xl border-r border-white/10">
+                <SheetTitle className="sr-only">Menu</SheetTitle>
+                <SheetDescription className="sr-only">Site navigation</SheetDescription>
                 <div className="flex flex-col space-y-6 p-4">
                   <Link href="/" className="flex items-center space-x-2">
                     <Image src="/images/profile-circle.png" alt="HopeEngineer Profile Logo" width={36} height={36} className="rounded-full" />
