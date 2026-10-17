@@ -17,7 +17,7 @@ export function ProjectSection({ project, headingLevel = 'h3' }: ProjectSectionP
   const otherLinks = project.links.filter((link) => !link.primary);
 
   return (
-    <ScrollSection triggerOffset="top 80%" className="min-h-screen py-24 md:py-32 flex items-center">
+    <ScrollSection triggerOffset="top 80%" className="py-20 md:py-32 lg:min-h-screen flex items-center">
       <article
         id={project.id}
         aria-labelledby={`${project.id}-title`}

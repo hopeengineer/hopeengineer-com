@@ -34,7 +34,7 @@ export function BlogPreviewSection() {
   if (!isLoading && latestPosts.length === 0) return null;
 
   return (
-    <ScrollSection triggerOffset="top 80%" className="min-h-screen py-24 md:py-32 flex flex-col justify-center">
+    <ScrollSection triggerOffset="top 80%" className="py-20 md:py-32 lg:min-h-screen flex flex-col justify-center">
       <div className="container px-4 md:px-6 z-10 w-full">
         <div className="flex flex-col md:flex-row justify-between items-end mb-16">
           <div>

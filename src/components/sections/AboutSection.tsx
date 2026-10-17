@@ -7,7 +7,7 @@ import { ScrollSection } from '../scroll/ScrollSection';
 
 export function AboutSection() {
   return (
-    <ScrollSection className="min-h-screen py-24 md:py-32 flex items-center">
+    <ScrollSection className="py-20 md:py-32 lg:min-h-screen flex items-center">
       <div className="container px-4 md:px-6 z-10 max-w-4xl mx-auto">
         <div className="glass-panel p-8 md:p-16 space-y-8 flex flex-col items-center text-center">
           <h2 className="text-sm font-code tracking-[0.2em] text-primary uppercase">The Mission</h2>

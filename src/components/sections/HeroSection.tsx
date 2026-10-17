@@ -1,61 +1,64 @@
 'use client';
 
-import { ArrowRight, ChevronDown } from 'lucide-react';
-import { Button } from '@/components/ui/button';
+import { ChevronDown } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
+import { Button } from '@/components/ui/button';
+import { bestPosts } from '@/lib/proof';
+import { WaveCards } from './WaveCards';
 
-const products = [
-  { href: '#threadify', logo: '/images/threadify-logo.png', name: 'Threadify', job: 'Turns your posts into leads' },
-  { href: '#sharpy', logo: '/images/sharpy-icon.png', name: 'Sharpy', job: 'Edits your videos by itself' },
-];
+const PORTRAIT = 'https://i.imgur.com/uiFxqeG.jpeg';
 
 export function HeroSection() {
   return (
-    <div className="container relative h-screen flex flex-col justify-center px-4 md:px-6 z-10 w-full">
-      <div className="flex flex-col items-center text-center max-w-4xl mx-auto w-full">
-        <div className="space-y-6">
-          <p className="font-code text-xs md:text-sm uppercase tracking-[0.25em] text-white/60">
-            hopeengineer <span aria-hidden="true">·</span> Engineer your hope
-          </p>
-          <h1 className="text-[2.35rem] font-headline font-bold tracking-tighter sm:text-[3.25rem] md:text-[3.6rem] lg:text-[4.25rem] leading-[1.05] text-foreground drop-shadow-2xl text-balance">
-            <span className="block">I rebuilt my life from zero in under 2 years.</span>
-            <span className="block text-white/70">
-              Now I build AI that gives&nbsp;you <span className="text-gradient-primary">your time back.</span>
-            </span>
-          </h1>
-          <p className="max-w-[700px] mx-auto text-white/80 md:text-xl font-body leading-relaxed text-balance">
-            I am Sameera, a former Amazon software engineer, building from Sri Lanka.
-          </p>
-        </div>
+    <div className="relative w-full overflow-hidden lg:min-h-screen">
+      {/* The posts people actually read, drifting on a wave behind the portrait (desktop) */}
+      <div className="absolute inset-0 hidden lg:block">
+        <WaveCards posts={bestPosts} />
+      </div>
 
-        <ul className="mt-8 flex flex-col gap-3 sm:flex-row sm:gap-4" aria-label="What I build">
-          {products.map((product) => (
-            <li key={product.name}>
-              <a
-                href={product.href}
-                className="group flex items-center gap-3 rounded-full border border-white/10 bg-black/40 py-2 pl-2 pr-5 text-left backdrop-blur-md transition-colors hover:border-primary/50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
-              >
-                <Image src={product.logo} alt="" width={40} height={40} className="h-10 w-10 rounded-full" />
-                <span className="flex flex-col leading-tight">
-                  <span className="font-headline font-bold text-foreground">{product.name}</span>
-                  <span className="text-sm text-white/60">{product.job}</span>
-                </span>
-                <ArrowRight className="ml-1 h-4 w-4 text-white/40 transition-transform group-hover:translate-x-1 group-hover:text-primary" aria-hidden="true" />
-              </a>
-            </li>
-          ))}
-        </ul>
-
-        <div className="flex justify-center mt-8 w-full sm:w-auto">
-          <Button asChild size="lg" className="w-full sm:w-[220px] bg-primary hover:bg-primary/90 text-primary-foreground shadow-lg shadow-primary/20 backdrop-blur-md font-semibold text-base py-6">
+      <div className="pointer-events-none container relative z-10 grid grid-cols-1 items-center gap-10 px-4 pt-28 pb-14 lg:min-h-screen lg:pb-20 md:px-6 lg:grid-cols-[1fr_minmax(0,560px)] lg:items-stretch lg:gap-12">
+        {/* Who I am and what I solve: headline at the top, the wave passes underneath, the button sits below it */}
+        <div className="flex flex-col items-center text-center lg:h-full lg:items-start lg:justify-between lg:py-8 lg:text-left">
+          <div className="pointer-events-auto flex flex-col items-center lg:items-start">
+            <p className="font-code text-xs md:text-sm uppercase tracking-[0.25em] text-white/60">
+              Sameera <span aria-hidden="true">·</span> hopeengineer
+            </p>
+            <h1 className="mt-6 text-[2.6rem] font-headline font-bold tracking-tighter sm:text-6xl lg:text-[4.25rem] leading-[1.03] text-foreground drop-shadow-2xl text-balance">
+              I rebuilt my life from zero in under 2 years.
+            </h1>
+            <p className="mt-6 max-w-[520px] text-xl md:text-2xl font-body leading-snug text-white/80 text-balance">
+              Now I build AI that gives you <span className="text-gradient-primary font-semibold">your time back.</span>
+            </p>
+          </div>
+          <Button asChild size="lg" className="pointer-events-auto mt-10 hidden w-[220px] lg:inline-flex bg-primary hover:bg-primary/90 text-primary-foreground shadow-lg shadow-primary/20 font-semibold text-base py-6">
             <Link href="/work-with-me">Work with me</Link>
           </Button>
         </div>
+
+        {/* One focal visual: me. On smaller screens the wave runs behind the photo, full width. */}
+        <div className="pointer-events-auto relative mx-auto w-full max-w-[220px] sm:max-w-[300px] lg:max-w-[400px] lg:self-center">
+          <div className="absolute inset-y-0 left-[calc(50%-50vw)] w-screen lg:hidden">
+            <WaveCards posts={bestPosts} variant="band" />
+          </div>
+          <div className="relative z-20 aspect-[3/4] w-full overflow-hidden rounded-[1.75rem] border border-white/15 shadow-[0_30px_80px_rgba(0,0,0,0.6),0_0_80px_rgba(255,170,0,0.18)]">
+            <Image src={PORTRAIT} alt="Sameera (hopeengineer)" fill sizes="(min-width: 1024px) 400px, 300px" className="object-cover" priority />
+          </div>
+          {/* The sticker */}
+          <div className="absolute -bottom-5 -right-6 z-30 rotate-[-5deg] rounded-xl bg-primary px-4 py-3 text-primary-foreground shadow-2xl md:px-5 md:py-4">
+            <p className="font-headline text-2xl font-bold leading-none tabular-nums md:text-4xl">31.8K</p>
+            <p className="mt-1 text-[11px] font-semibold uppercase tracking-wider md:text-xs">followers on Threads</p>
+          </div>
+        </div>
+
+        {/* Phones and tablets: the button sits below the photo */}
+        <Button asChild size="lg" className="pointer-events-auto mx-auto mt-4 w-full sm:w-[260px] lg:hidden bg-primary hover:bg-primary/90 text-primary-foreground shadow-lg shadow-primary/20 font-semibold text-base py-6">
+          <Link href="/work-with-me">Work with me</Link>
+        </Button>
       </div>
 
       {/* Scroll indicator */}
-      <div className="absolute bottom-12 left-1/2 -translate-x-1/2 hidden md:flex flex-col items-center opacity-70 animate-bounce motion-reduce:animate-none" aria-hidden="true">
+      <div className="absolute bottom-8 left-1/2 z-10 -translate-x-1/2 hidden lg:flex flex-col items-center opacity-70 animate-bounce motion-reduce:animate-none" aria-hidden="true">
         <span className="text-xs uppercase tracking-[0.3em] font-code mb-2">Scroll</span>
         <ChevronDown className="h-4 w-4" />
       </div>

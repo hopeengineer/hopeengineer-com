@@ -122,4 +122,73 @@
   .text-gradient-light {
     @apply bg-clip-text text-transparent bg-gradient-to-br from-white to-white/60;
   }
+  /* Gentle float for the hero's post cards. Uses `translate` so it adds to a card's tilt instead of replacing it. */
+  .animate-float {
+    animation: float 6s ease-in-out infinite;
+  }
+}
+
+/* The fanned hand of posts in the proof section: hover or focus lifts a card, straightens it and makes it readable */
+.fan-card {
+  transform: translateY(var(--y)) rotate(var(--r));
+  transform-origin: 50% 100%;
+  transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.45s, border-color 0.3s;
+}
+.fan-card:hover,
+.fan-card:focus-visible {
+  z-index: 50 !important;
+  transform: translateY(calc(var(--y) - 60px)) rotate(0deg) scale(1.45);
+  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.7), 0 0 60px rgba(255, 170, 0, 0.2);
+}
+@media (prefers-reduced-motion: reduce) {
+  .fan-card { transition: none; }
+}
+
+/* Hero wave: posts travel along an offset path, tilting with the curve. Hover pauses them. */
+.wave-card {
+  offset-rotate: auto;
+  offset-anchor: center;
+  animation-name: wave-travel;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.35s, border-color 0.3s;
+}
+/* Hovering a post stops the wave, straightens that post and pops it up to a readable size */
+/* Only on devices with a real pointer: phones keep :hover after a tap, which would leave a card blown up */
+@media (hover: hover) {
+  .wave:has(.wave-card:hover) .wave-card {
+    animation-play-state: paused;
+  }
+  .wave-card:hover {
+    z-index: 40;
+    offset-rotate: 0deg;
+    transform: translate(var(--dx, 0px), var(--dy, 0px)) scale(var(--pop, 1.9));
+    border-color: hsl(var(--primary) / 0.6);
+    box-shadow: 0 30px 80px rgba(0, 0, 0, 0.7), 0 0 60px rgba(255, 170, 0, 0.25);
+  }
+}
+@keyframes wave-travel {
+  from { offset-distance: 0%; }
+  to { offset-distance: 100%; }
+}
+
+/* Proof band: a giant line of text scrolling behind the stat cards */
+.marquee-track {
+  animation: marquee 40s linear infinite;
+}
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .wave-card,
+  .marquee-track {
+    animation-play-state: paused;
+  }
+}
+
+@keyframes float {
+  0%, 100% { translate: 0 0; }
+  50% { translate: 0 -12px; }
 }

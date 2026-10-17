@@ -62,7 +62,7 @@ export function ScrollSection({
   }, [triggerOffset, yOffset]);
 
   return (
-    <section ref={sectionRef} className={cn("relative min-h-screen flex items-center justify-center pointer-events-none", className)}>
+    <section ref={sectionRef} className={cn("relative lg:min-h-screen flex items-center justify-center pointer-events-none", className)}>
       <div 
         ref={contentRef} 
         className="w-full h-full pointer-events-auto"

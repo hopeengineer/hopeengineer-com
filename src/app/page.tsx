@@ -4,6 +4,7 @@ import { useEffect, useRef } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { HeroSection } from '@/components/sections/HeroSection';
+import { ProofBar } from '@/components/sections/ProofBar';
 import { AboutSection } from '@/components/sections/AboutSection';
 import { ProjectSection } from '@/components/sections/ProjectSection';
 import { ServicesSection } from '@/components/sections/ServicesSection';
@@ -39,6 +40,7 @@ export default function Home() {
     <div className="w-full relative">
       <div ref={containerRef} className="flex flex-col w-full relative z-10">
         <div className="snap-section w-full"><HeroSection /></div>
+        <div className="snap-section w-full"><ProofBar /></div>
         <div className="snap-section w-full"><AboutSection /></div>
         <section aria-labelledby="products-heading">
           <h2 id="products-heading" className="sr-only">What I&apos;m building</h2>

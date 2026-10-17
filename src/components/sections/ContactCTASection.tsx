@@ -6,7 +6,7 @@ import { ScrollSection } from '../scroll/ScrollSection';
 
 export function ContactCTASection() {
   return (
-    <ScrollSection triggerOffset="top 80%" className="min-h-screen py-24 md:py-32 flex items-center justify-center text-center">
+    <ScrollSection triggerOffset="top 80%" className="py-20 md:py-32 lg:min-h-screen flex items-center justify-center text-center">
       <div className="container px-4 md:px-6 z-10">
         <div className="glass-panel max-w-3xl mx-auto p-12 md:p-24 relative overflow-hidden group">
           {/* Glowing accent orb inside the card */}
