@@ -54,186 +54,209 @@ export function LiveSketch() {
 
     let width = 0;
     let height = 0;
+    let animationFrameId = 0;
 
+    // Draw at the canvas's real on-screen size, so the sketch is never stretched to fit
     const updateSize = () => {
-      // 1:1 scaling
-      width = window.innerWidth;
-      height = window.innerHeight;
-      
+      width = canvas.clientWidth;
+      height = canvas.clientHeight;
+
       // Handle high-dpi displays safely
       const dpr = window.devicePixelRatio || 1;
       canvas.width = width * dpr;
       canvas.height = height * dpr;
-      
-      ctx.scale(dpr, dpr);
-    };
-    updateSize();
 
-    const maxDepth = 9; // Keeps flawless 60fps
-
-    let activeBranches: {
-      x: number, y: number, 
-      angle: number, 
-      length: number, targetLength: number,
-      depth: number, thickness: number,
-      color: string
-    }[] = [];
-
-    // Seed the trunk safely in the center lower-third
-    activeBranches.push({
-      x: width / 2, // Exactly horizontal center
-      y: height,    // Bottom of screen extending fully up
-      angle: -Math.PI / 2,
-      length: 0,
-      targetLength: Math.min(height * 0.25, 200), // Responsive trunk height
-      depth: 0,
-      thickness: 12,
-      color: `hsla(160, 80%, 50%, 0.8)`
-    });
-
-    // --- STORY LINES (House & Children) ---
-    let storyLines: {
-      sx: number, sy: number, ex: number, ey: number, 
-      cx: number, cy: number, 
-      progress: number, thickness: number, color: string
-    }[] = [];
-
-    const addLine = (sx: number, sy: number, ex: number, ey: number, thickness: number, color: string) => {
-      storyLines.push({ sx, sy, ex, ey, cx: sx, cy: sy, progress: 0, thickness, color });
+      // Absolute, not cumulative, so a redraw after a resize starts from a clean scale
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
     };
 
-    // Responsive positioning for the story
-    const houseX = width * 0.75;
-    const houseY = height - 60; // Slightly above bottom to show ground connection
-    const s = Math.min(60, width * 0.05); // Dynamic scale
-    const houseColor = 'hsla(30, 80%, 50%, 0.5)'; // Faint amber for the background story
-    const kidColor = 'hsla(160, 60%, 50%, 0.5)'; // Faint bioluminescent green, touched by the tree
+    // (Re)starts the whole sketch: the tree grows and the story is drawn from scratch for the current size
+    const start = () => {
+      cancelAnimationFrame(animationFrameId);
+      updateSize();
+      ctx.clearRect(0, 0, width, height);
 
-    // 1. Draw House Walls & Roof
-    addLine(houseX, houseY, houseX, houseY - s, 2, houseColor); // Left wall
-    addLine(houseX + s*1.5, houseY, houseX + s*1.5, houseY - s, 2, houseColor); // Right wall
-    addLine(houseX - 10, houseY, houseX + s*1.5 + 10, houseY, 2, houseColor); // Floor / Ground line
-    addLine(houseX - 10, houseY - s, houseX + s*0.75, houseY - s*1.5, 2, houseColor); // Roof left
-    addLine(houseX + s*1.5 + 10, houseY - s, houseX + s*0.75, houseY - s*1.5, 2, houseColor); // Roof right
+      const maxDepth = 9; // Keeps flawless 60fps
 
-    // House Door
-    addLine(houseX + s*0.5, houseY, houseX + s*0.5, houseY - s*0.4, 1.5, houseColor);
-    addLine(houseX + s*1.0, houseY, houseX + s*1.0, houseY - s*0.4, 1.5, houseColor);
-    addLine(houseX + s*0.5, houseY - s*0.4, houseX + s*1.0, houseY - s*0.4, 1.5, houseColor);
+      let activeBranches: {
+        x: number, y: number, 
+        angle: number, 
+        length: number, targetLength: number,
+        depth: number, thickness: number,
+        color: string
+      }[] = [];
 
-    // 2. Draw Children (Standing between tree and house)
-    const kidX = houseX - s * 1.5;
+      // Seed the trunk safely in the center lower-third
+      activeBranches.push({
+        x: width / 2, // Exactly horizontal center
+        y: height,    // Bottom of screen extending fully up
+        angle: -Math.PI / 2,
+        length: 0,
+        targetLength: Math.min(height * 0.25, 200), // Responsive trunk height
+        depth: 0,
+        thickness: 12,
+        color: `hsla(160, 80%, 50%, 0.8)`
+      });
+
+      // --- STORY LINES (House & Children) ---
+      let storyLines: {
+        sx: number, sy: number, ex: number, ey: number, 
+        cx: number, cy: number, 
+        progress: number, thickness: number, color: string
+      }[] = [];
+
+      const addLine = (sx: number, sy: number, ex: number, ey: number, thickness: number, color: string) => {
+        storyLines.push({ sx, sy, ex, ey, cx: sx, cy: sy, progress: 0, thickness, color });
+      };
+
+      // Responsive positioning for the story
+      const houseX = width * 0.75;
+      const houseY = height - 60; // Slightly above bottom to show ground connection
+      const s = Math.min(60, width * 0.05); // Dynamic scale
+      const houseColor = 'hsla(30, 80%, 50%, 0.5)'; // Faint amber for the background story
+      const kidColor = 'hsla(160, 60%, 50%, 0.5)'; // Faint bioluminescent green, touched by the tree
+
+      // 1. Draw House Walls & Roof
+      addLine(houseX, houseY, houseX, houseY - s, 2, houseColor); // Left wall
+      addLine(houseX + s*1.5, houseY, houseX + s*1.5, houseY - s, 2, houseColor); // Right wall
+      addLine(houseX - 10, houseY, houseX + s*1.5 + 10, houseY, 2, houseColor); // Floor / Ground line
+      addLine(houseX - 10, houseY - s, houseX + s*0.75, houseY - s*1.5, 2, houseColor); // Roof left
+      addLine(houseX + s*1.5 + 10, houseY - s, houseX + s*0.75, houseY - s*1.5, 2, houseColor); // Roof right
+
+      // House Door
+      addLine(houseX + s*0.5, houseY, houseX + s*0.5, houseY - s*0.4, 1.5, houseColor);
+      addLine(houseX + s*1.0, houseY, houseX + s*1.0, houseY - s*0.4, 1.5, houseColor);
+      addLine(houseX + s*0.5, houseY - s*0.4, houseX + s*1.0, houseY - s*0.4, 1.5, houseColor);
+
+      // 2. Draw Children (Standing between tree and house)
+      const kidX = houseX - s * 1.5;
     
-    // Child 1 (Taller, pointing at the tree)
-    addLine(kidX, houseY, kidX, houseY - 15, 2, kidColor); // Torso/Legs
-    addLine(kidX, houseY - 15, kidX - 10, houseY - 25, 1.5, kidColor); // Arm pointing left/up to tree
-    addLine(kidX, houseY - 15, kidX + 8, houseY - 5, 1.5, kidColor); // Arm down
+      // Child 1 (Taller, pointing at the tree)
+      addLine(kidX, houseY, kidX, houseY - 15, 2, kidColor); // Torso/Legs
+      addLine(kidX, houseY - 15, kidX - 10, houseY - 25, 1.5, kidColor); // Arm pointing left/up to tree
+      addLine(kidX, houseY - 15, kidX + 8, houseY - 5, 1.5, kidColor); // Arm down
 
-    // Child 2 (Smaller, holding hands)
-    const kid2X = kidX + 15;
-    addLine(kid2X, houseY, kid2X, houseY - 10, 1.5, kidColor); // Torso
-    addLine(kidX + 8, houseY - 5, kid2X, houseY - 8, 1.5, kidColor); // Holding hands
+      // Child 2 (Smaller, holding hands)
+      const kid2X = kidX + 15;
+      addLine(kid2X, houseY, kid2X, houseY - 10, 1.5, kidColor); // Torso
+      addLine(kidX + 8, houseY - 5, kid2X, houseY - 8, 1.5, kidColor); // Holding hands
 
-    let animationFrameId: number;
+      const draw = () => {
+        // Allow rendering to continue until both tree and story are fully drawn
+        if (activeBranches.length === 0 && storyLines.length === 0) return;
 
-    const draw = () => {
-      // Allow rendering to continue until both tree and story are fully drawn
-      if (activeBranches.length === 0 && storyLines.length === 0) return;
-
-      // 1. Draw Tree Branches 
-      let nextBranches: typeof activeBranches = [];
-      activeBranches.forEach(b => {
-        const growthSpeed = Math.max(1, 4 - b.depth * 0.3); 
+        // 1. Draw Tree Branches 
+        let nextBranches: typeof activeBranches = [];
+        activeBranches.forEach(b => {
+          const growthSpeed = Math.max(1, 4 - b.depth * 0.3); 
         
-        ctx.beginPath();
-        ctx.moveTo(b.x, b.y);
+          ctx.beginPath();
+          ctx.moveTo(b.x, b.y);
 
-        b.length += growthSpeed;
-        const reachedTarget = b.length >= b.targetLength;
-        const stepLength = reachedTarget ? (b.targetLength - (b.length - growthSpeed)) : growthSpeed;
+          b.length += growthSpeed;
+          const reachedTarget = b.length >= b.targetLength;
+          const stepLength = reachedTarget ? (b.targetLength - (b.length - growthSpeed)) : growthSpeed;
 
-        b.x += Math.cos(b.angle) * stepLength;
-        b.y += Math.sin(b.angle) * stepLength;
+          b.x += Math.cos(b.angle) * stepLength;
+          b.y += Math.sin(b.angle) * stepLength;
 
-        ctx.lineTo(b.x, b.y);
-        ctx.strokeStyle = b.color;
-        ctx.lineWidth = b.thickness;
-        ctx.lineCap = 'round';
-        ctx.shadowBlur = 10;
-        ctx.shadowColor = 'rgba(0, 255, 170, 0.4)';
-        ctx.stroke();
+          ctx.lineTo(b.x, b.y);
+          ctx.strokeStyle = b.color;
+          ctx.lineWidth = b.thickness;
+          ctx.lineCap = 'round';
+          ctx.shadowBlur = 10;
+          ctx.shadowColor = 'rgba(0, 255, 170, 0.4)';
+          ctx.stroke();
 
-        if (reachedTarget) {
-          if (b.depth < maxDepth) {
-            const numChildren = b.depth < 4 ? 2 : (Math.random() > 0.4 ? 2 : 1);
-            for (let i = 0; i < numChildren; i++) {
-              const spread = (Math.PI / 3) * (1 - b.depth * 0.08); 
-              const newAngle = b.angle + (Math.random() * spread - spread / 2) + (i === 0 ? -0.25 : 0.25);
-              const newDepth = b.depth + 1;
-              const newThickness = Math.max(0.5, b.thickness * 0.7);
+          if (reachedTarget) {
+            if (b.depth < maxDepth) {
+              const numChildren = b.depth < 4 ? 2 : (Math.random() > 0.4 ? 2 : 1);
+              for (let i = 0; i < numChildren; i++) {
+                const spread = (Math.PI / 3) * (1 - b.depth * 0.08); 
+                const newAngle = b.angle + (Math.random() * spread - spread / 2) + (i === 0 ? -0.25 : 0.25);
+                const newDepth = b.depth + 1;
+                const newThickness = Math.max(0.5, b.thickness * 0.7);
               
-              nextBranches.push({
-                x: b.x, y: b.y, angle: newAngle,
-                targetLength: b.targetLength * (0.7 + Math.random() * 0.2),
-                length: 0, depth: newDepth, thickness: newThickness,
-                color: `hsla(160, 80%, ${50 + newDepth * 2}%, ${0.9 - newDepth * 0.05})`
-              });
+                nextBranches.push({
+                  x: b.x, y: b.y, angle: newAngle,
+                  targetLength: b.targetLength * (0.7 + Math.random() * 0.2),
+                  length: 0, depth: newDepth, thickness: newThickness,
+                  color: `hsla(160, 80%, ${50 + newDepth * 2}%, ${0.9 - newDepth * 0.05})`
+                });
+              }
+            }
+          } else {
+            nextBranches.push(b);
+          }
+        });
+        activeBranches = nextBranches;
+
+        // 2. Draw Story Lines (House & Children)
+        let nextStoryLines: typeof storyLines = [];
+        storyLines.forEach(line => {
+          if (line.progress >= 1) return; // Done
+
+          ctx.beginPath();
+          ctx.moveTo(line.cx, line.cy);
+
+          // Draw 2% of the line distance per frame for slow sketching effect
+          line.progress += 0.015;
+          if (line.progress > 1) line.progress = 1;
+
+          line.cx = line.sx + (line.ex - line.sx) * line.progress;
+          line.cy = line.sy + (line.ey - line.sy) * line.progress;
+
+          ctx.lineTo(line.cx, line.cy);
+          ctx.strokeStyle = line.color;
+          ctx.lineWidth = line.thickness;
+          ctx.shadowBlur = 5;
+          ctx.shadowColor = line.color.includes('160') ? 'rgba(0, 255, 170, 0.4)' : 'rgba(255, 170, 0, 0.4)';
+          ctx.stroke();
+
+          if (line.progress < 1) {
+            nextStoryLines.push(line);
+          } else {
+            // If a torso line just finished, draw the head circle!
+            if (line.sx === kidX && line.sy === houseY && line.ex === kidX && line.ey === houseY - 15) {
+               ctx.beginPath();
+               ctx.arc(kidX, houseY - 20, 4, 0, Math.PI * 2);
+               ctx.fillStyle = kidColor;
+               ctx.fill();
+            }
+            if (line.sx === kid2X && line.sy === houseY && line.ex === kid2X && line.ey === houseY - 10) {
+               ctx.beginPath();
+               ctx.arc(kid2X, houseY - 14, 3, 0, Math.PI * 2);
+               ctx.fillStyle = kidColor;
+               ctx.fill();
             }
           }
-        } else {
-          nextBranches.push(b);
-        }
-      });
-      activeBranches = nextBranches;
+        });
+        storyLines = nextStoryLines;
 
-      // 2. Draw Story Lines (House & Children)
-      let nextStoryLines: typeof storyLines = [];
-      storyLines.forEach(line => {
-        if (line.progress >= 1) return; // Done
+        animationFrameId = requestAnimationFrame(draw);
+      };
 
-        ctx.beginPath();
-        ctx.moveTo(line.cx, line.cy);
-
-        // Draw 2% of the line distance per frame for slow sketching effect
-        line.progress += 0.015;
-        if (line.progress > 1) line.progress = 1;
-
-        line.cx = line.sx + (line.ex - line.sx) * line.progress;
-        line.cy = line.sy + (line.ey - line.sy) * line.progress;
-
-        ctx.lineTo(line.cx, line.cy);
-        ctx.strokeStyle = line.color;
-        ctx.lineWidth = line.thickness;
-        ctx.shadowBlur = 5;
-        ctx.shadowColor = line.color.includes('160') ? 'rgba(0, 255, 170, 0.4)' : 'rgba(255, 170, 0, 0.4)';
-        ctx.stroke();
-
-        if (line.progress < 1) {
-          nextStoryLines.push(line);
-        } else {
-          // If a torso line just finished, draw the head circle!
-          if (line.sx === kidX && line.sy === houseY && line.ex === kidX && line.ey === houseY - 15) {
-             ctx.beginPath();
-             ctx.arc(kidX, houseY - 20, 4, 0, Math.PI * 2);
-             ctx.fillStyle = kidColor;
-             ctx.fill();
-          }
-          if (line.sx === kid2X && line.sy === houseY && line.ex === kid2X && line.ey === houseY - 10) {
-             ctx.beginPath();
-             ctx.arc(kid2X, houseY - 14, 3, 0, Math.PI * 2);
-             ctx.fillStyle = kidColor;
-             ctx.fill();
-          }
-        }
-      });
-      storyLines = nextStoryLines;
-
-      animationFrameId = requestAnimationFrame(draw);
+      draw();
     };
 
-    draw();
+    start();
+
+    // Redraw when the width changes (window resized, rotated, moved to another screen). Small height changes,
+    // like a phone's address bar showing and hiding, are ignored so the tree doesn't regrow while scrolling.
+    let resizeTimer: ReturnType<typeof setTimeout>;
+    const onResize = () => {
+      clearTimeout(resizeTimer);
+      resizeTimer = setTimeout(() => {
+        const widthChanged = Math.abs(canvas.clientWidth - width) > 1;
+        const heightChangedALot = Math.abs(canvas.clientHeight - height) > height * 0.15;
+        if (widthChanged || heightChangedALot) start();
+      }, 200);
+    };
+    window.addEventListener('resize', onResize);
 
     return () => {
+      clearTimeout(resizeTimer);
+      window.removeEventListener('resize', onResize);
       cancelAnimationFrame(animationFrameId);
     };
   }, []);
