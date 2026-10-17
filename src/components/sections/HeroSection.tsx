@@ -2,7 +2,6 @@
 
 import { ChevronDown } from 'lucide-react';
 import Image from 'next/image';
-import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import { bestPosts } from '@/lib/proof';
 import { WaveCards } from './WaveCards';
@@ -32,7 +31,7 @@ export function HeroSection() {
             </p>
           </div>
           <Button asChild size="lg" className="pointer-events-auto mt-10 hidden w-[220px] lg:inline-flex bg-primary hover:bg-primary/90 text-primary-foreground shadow-lg shadow-primary/20 font-semibold text-base py-6">
-            <Link href="/work-with-me">Work with me</Link>
+            <a href="#contact">Work with me</a>
           </Button>
         </div>
 
@@ -53,7 +52,7 @@ export function HeroSection() {
 
         {/* Phones and tablets: the button sits below the photo */}
         <Button asChild size="lg" className="pointer-events-auto mx-auto mt-4 w-full sm:w-[260px] lg:hidden bg-primary hover:bg-primary/90 text-primary-foreground shadow-lg shadow-primary/20 font-semibold text-base py-6">
-          <Link href="/work-with-me">Work with me</Link>
+          <a href="#contact">Work with me</a>
         </Button>
       </div>
 

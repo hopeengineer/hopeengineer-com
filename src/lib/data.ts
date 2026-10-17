@@ -23,7 +23,7 @@ const getImage = (id: string): ImagePlaceholder => {
 export const NAV_LINKS = [
   { href: "/", label: "Home" },
   { href: "/blog", label: "Blog" },
-  { href: "/work-with-me", label: "Work With Me" },
+  { href: "/#contact", label: "Work With Me" },
   { href: "/ai-apps", label: "AI Apps" },
   { href: "/about", label: "About" },
 ];

@@ -4,7 +4,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { Button } from "@/components/ui/button";
-import { Sheet, SheetContent, SheetDescription, SheetTitle, SheetTrigger } from "@/components/ui/sheet";
+import { Sheet, SheetClose, SheetContent, SheetDescription, SheetTitle, SheetTrigger } from "@/components/ui/sheet";
 import { Menu, User, LogOut, Code, Inbox } from "lucide-react";
 import { NAV_LINKS } from "@/lib/data";
 import { cn } from "@/lib/utils";
@@ -66,26 +66,30 @@ const Header = () => {
                   <span className="sr-only">Toggle Menu</span>
                 </Button>
               </SheetTrigger>
-              <SheetContent side="left" className="bg-background/80 backdrop-blur-2xl border-r border-white/10">
+              <SheetContent side="left" className="w-[240px] sm:max-w-[240px] bg-background/80 backdrop-blur-2xl border-r border-white/10">
                 <SheetTitle className="sr-only">Menu</SheetTitle>
                 <SheetDescription className="sr-only">Site navigation</SheetDescription>
                 <div className="flex flex-col space-y-6 p-4">
-                  <Link href="/" className="flex items-center space-x-2">
-                    <Image src="/images/profile-circle.png" alt="HopeEngineer Profile Logo" width={36} height={36} className="rounded-full" />
-                    <span className="font-bold font-headline text-gradient-light">HopeEngineer</span>
-                  </Link>
+                  {/* Tapping any link in the menu also closes it */}
+                  <SheetClose asChild>
+                    <Link href="/" className="flex items-center space-x-2">
+                      <Image src="/images/profile-circle.png" alt="HopeEngineer Profile Logo" width={36} height={36} className="rounded-full" />
+                      <span className="font-bold font-headline text-gradient-light">HopeEngineer</span>
+                    </Link>
+                  </SheetClose>
                   <nav className="flex flex-col space-y-4 font-code uppercase text-sm tracking-wider">
                     {NAV_LINKS.map((link) => (
-                      <Link
-                        key={link.href}
-                        href={link.href}
-                        className={cn(
-                          "px-2 py-2 transition-colors",
-                          pathname === link.href ? "text-primary border-l-2 border-primary" : "text-white/60 hover:text-white"
-                        )}
-                      >
-                        {link.label}
-                      </Link>
+                      <SheetClose asChild key={link.href}>
+                        <Link
+                          href={link.href}
+                          className={cn(
+                            "px-2 py-2 transition-colors",
+                            pathname === link.href ? "text-primary border-l-2 border-primary" : "text-white/60 hover:text-white"
+                          )}
+                        >
+                          {link.label}
+                        </Link>
+                      </SheetClose>
                     ))}
                   </nav>
                 </div>

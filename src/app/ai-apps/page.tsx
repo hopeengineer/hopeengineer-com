@@ -8,7 +8,6 @@ import { Button } from "@/components/ui/button";
 import { aiApps } from "@/lib/data";
 import { ArrowUpRight } from "lucide-react";
 import AnimatedBackground from "@/components/AnimatedBackground";
-import CountdownPopup from "@/components/CountdownPopup";
 import { Badge } from "@/components/ui/badge";
 import { cn } from "@/lib/utils";
 
@@ -27,7 +26,6 @@ const AiAppsPage = () => {
         <AnimatedBackground><div/></AnimatedBackground>
       </div>
       <div className="relative z-10 container max-w-6xl mx-auto pt-32 pb-12 px-4 sm:px-6 lg:px-8">
-        <CountdownPopup />
         <header className="text-center mb-12">
           <h1 className="text-4xl font-headline font-extrabold tracking-tight sm:text-5xl md:text-6xl">
             My AI Apps

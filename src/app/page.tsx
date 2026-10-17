@@ -36,6 +36,15 @@ export default function Home() {
     };
   }, []);
 
+  // Arriving from another page at /#contact (nav link, or the old /work-with-me address): the browser's own jump
+  // happens before the sections and blog posts finish laying out, so scroll to the form once they have
+  useEffect(() => {
+    if (window.location.hash !== '#contact') return;
+    const go = () => document.getElementById('contact')?.scrollIntoView({ block: 'start' });
+    const timers = [setTimeout(go, 500), setTimeout(go, 1600)];
+    return () => timers.forEach(clearTimeout);
+  }, []);
+
   return (
     <div className="w-full relative">
       <div ref={containerRef} className="flex flex-col w-full relative z-10">
@@ -50,7 +59,7 @@ export default function Home() {
         </section>
         <div className="snap-section w-full"><ServicesSection /></div>
         <div className="snap-section w-full"><BlogPreviewSection /></div>
-        <div className="snap-section w-full"><ContactCTASection /></div>
+        <div id="contact" className="snap-section w-full scroll-mt-20"><ContactCTASection /></div>
       </div>
     </div>
   );

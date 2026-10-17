@@ -36,7 +36,7 @@ const Hero = () => {
               </p>
             </div>
             <div className="flex flex-col gap-2 min-[400px]:flex-row justify-center">
-              <Link href="/work-with-me">
+              <Link href="/#contact">
                 <Button size="lg" className="bg-accent hover:bg-accent/90 text-accent-foreground">
                   Work With Me
                 </Button>
