@@ -8,6 +8,7 @@ import { Toaster } from '@/components/ui/toaster';
 import { SupabaseProvider } from '@/components/supabase-provider';
 import SmoothScrollProvider from '@/components/smooth-scroll-provider';
 import Experience from '@/components/3d/Experience';
+import { SOCIAL_LINKS } from '@/lib/data';
 
 const inter = Inter({
   subsets: ['latin'],
@@ -58,6 +59,24 @@ export const metadata: Metadata = {
   },
 };
 
+// Who this site is about, tied to every profile and to the two products, so search engines and AI answers
+// treat hopeengineer, Sharpy and Threadify as one known person and their work. sharpy.live says the same from its side.
+const personLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Person',
+  '@id': 'https://hopeengineer.com/#person',
+  name: 'hopeengineer',
+  url: 'https://hopeengineer.com',
+  image: 'https://hopeengineer.com/images/profile-circle.png',
+  jobTitle: 'Founder of Sharpy and Threadify',
+  description: SITE_DESCRIPTION,
+  sameAs: SOCIAL_LINKS.map((s) => s.href.replace(/\/subscribe$/, '')),
+  worksFor: [
+    { '@type': 'Organization', '@id': 'https://sharpy.live/#org', name: 'Sharpy', url: 'https://sharpy.live/' },
+    { '@type': 'Organization', name: 'Threadify', url: 'https://www.threadify.app' },
+  ],
+};
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -69,6 +88,7 @@ export default function RootLayout({
         className={cn("font-body antialiased", "min-h-screen bg-transparent text-foreground font-sans")}
         suppressHydrationWarning
       >
+        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(personLd) }} />
         <SupabaseProvider>
           <SmoothScrollProvider>
             <Experience />

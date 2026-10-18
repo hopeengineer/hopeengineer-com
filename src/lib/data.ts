@@ -1,7 +1,7 @@
 
 
-import { Facebook, Instagram, AtSign, Youtube, Github } from "lucide-react";
-import { MediumIcon, SubstackIcon } from "@/components/icons";
+import { Facebook, Instagram, AtSign, Youtube, Github, Linkedin } from "lucide-react";
+import { MediumIcon, SubstackIcon, TikTokIcon, XIcon } from "@/components/icons";
 import type { ImagePlaceholder } from './placeholder-images';
 import { PlaceHolderImages } from './placeholder-images';
 
@@ -30,12 +30,15 @@ export const NAV_LINKS = [
 
 export const SOCIAL_LINKS = [
   { name: "Threads", href: "https://www.threads.com/@hopeengineer", icon: AtSign },
-  { name: "GitHub", href: "https://github.com/hopeengineer", icon: Github },
-  { name: "Instagram", href: "https://www.instagram.com/hopeengineer", icon: Instagram },
-  { name: "Facebook", href: "https://www.facebook.com/thehopeengineer", icon: Facebook },
-  { name: "Medium", href: "https://medium.com/@hopeengineer", icon: MediumIcon },
-  { name: "Substack", href: "https://hopeengineer.substack.com/subscribe", icon: SubstackIcon },
   { name: "YouTube", href: "https://www.youtube.com/@hopeengineer", icon: Youtube },
+  { name: "TikTok", href: "https://www.tiktok.com/@hopeengineer", icon: TikTokIcon },
+  { name: "Instagram", href: "https://www.instagram.com/hopeengineer", icon: Instagram },
+  { name: "LinkedIn", href: "https://www.linkedin.com/in/hopeengineer/", icon: Linkedin },
+  { name: "X", href: "https://x.com/hopeengineer_", icon: XIcon },
+  { name: "Facebook", href: "https://www.facebook.com/h0peengineer", icon: Facebook },
+  { name: "Substack", href: "https://hopeengineer.substack.com/subscribe", icon: SubstackIcon },
+  { name: "Medium", href: "https://medium.com/@hopeengineer", icon: MediumIcon },
+  { name: "GitHub", href: "https://github.com/hopeengineer", icon: Github },
 ];
 
 export const blogPosts = [
