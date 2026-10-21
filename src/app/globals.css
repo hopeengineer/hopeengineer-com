@@ -94,6 +94,8 @@
     @apply bg-background text-foreground;
     /* Lenis smooth scrolling compatibility */
     overscroll-behavior: none;
+    /* Nothing may widen the page past the screen; on phones that makes the browser zoom out */
+    overflow-x: clip;
   }
 
   /* Ensure empty paragraphs from Tiptap editor render as visible whitespace gaps */

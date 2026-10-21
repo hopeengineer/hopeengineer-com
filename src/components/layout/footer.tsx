@@ -8,10 +8,10 @@ const Footer = () => {
 
   return (
     <footer className="border-t border-white/5 bg-background/20 backdrop-blur-md relative z-20 mt-auto">
-      <div className="container flex flex-col items-center justify-between gap-4 py-8 md:h-24 md:flex-row md:py-0">
-        <div className="flex flex-col items-center gap-4 px-8 md:flex-row md:gap-4 md:px-0">
-          <Code className="hidden h-5 w-5 text-primary md:block" />
-          <p className="text-center font-code text-xs uppercase tracking-widest text-white/40 md:text-left">
+      <div className="container flex flex-col items-center justify-between gap-4 px-4 py-8 sm:px-8 xl:h-24 xl:flex-row xl:py-0">
+        <div className="flex flex-col items-center gap-4 px-8 xl:flex-row xl:gap-4 xl:px-0">
+          <Code className="hidden h-5 w-5 text-primary xl:block" />
+          <p className="text-center font-code text-xs uppercase tracking-widest text-white/40 xl:text-left">
             &copy; {currentYear} HopeEngineer Hub.
           </p>
         </div>
@@ -31,10 +31,11 @@ const Footer = () => {
             Terms
           </Link>
         </nav>
-        <div className="flex items-center space-x-4">
+        {/* One row on phones too: smaller buttons spread across the width, so ten icons never push past the screen */}
+        <div className="flex w-full max-w-sm items-center justify-between sm:w-auto sm:max-w-none sm:justify-center sm:gap-1">
           {SOCIAL_LINKS.map((social) => (
             <Link key={social.name} href={social.href} target="_blank" rel="noopener noreferrer">
-              <Button variant="ghost" size="icon" aria-label={social.name} className="text-white/40 hover:text-primary hover:bg-white/5 transition-all">
+              <Button variant="ghost" size="icon" aria-label={social.name} className="h-7 w-7 text-white/40 hover:text-primary hover:bg-white/5 transition-all min-[375px]:h-8 min-[375px]:w-8 sm:h-10 sm:w-10">
                 <social.icon className="h-4 w-4" />
               </Button>
             </Link>
