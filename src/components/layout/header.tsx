@@ -96,11 +96,13 @@ const Header = () => {
               </SheetContent>
             </Sheet>
           </div>
-          <Link href="/" className="flex items-center space-x-2 md:hidden">
-            <Image src="/images/profile-circle.png" alt="HopeEngineer Profile Logo" width={36} height={36} className="rounded-full" />
+          {/* Phones: the name, then the avatar, at the right edge */}
+          <Link href="/" className="!ml-auto flex items-center gap-2 md:hidden">
             <span className="font-bold font-headline text-gradient-light transition-colors">HopeEngineer</span>
+            <Image src="/images/profile-circle.png" alt="HopeEngineer Profile Logo" width={36} height={36} className="rounded-full" />
           </Link>
-          <nav className="flex items-center">
+          {/* Signed out, phones have nothing here, so hide it rather than let it hold a slot */}
+          <nav className={cn("flex items-center", !user && !isUserLoading && "hidden md:flex")}>
             {isUserLoading ? (
               <div className="w-8 h-8 rounded-full border-2 border-white/10 border-t-primary animate-spin" />
             ) : user ? (
