@@ -98,6 +98,14 @@
     overflow-x: clip;
   }
 
+  /* Phones: the whole site a touch smaller, so more fits on screen without any zooming.
+     Sizes are in rem, so text, spacing and components all scale together. */
+  @media (max-width: 639px) {
+    html {
+      font-size: 83%;
+    }
+  }
+
   /* Ensure empty paragraphs from Tiptap editor render as visible whitespace gaps */
   .prose p:empty::before {
     content: "\00a0";

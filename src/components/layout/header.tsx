@@ -33,7 +33,7 @@ const Header = () => {
       <div className="container flex h-20 items-center transition-all duration-300">
         <div className="mr-4 hidden md:flex">
           <Link href="/" className="mr-8 flex items-center space-x-2 group">
-            <Image src="/images/profile-circle.png" alt="HopeEngineer Profile Logo" width={44} height={44} className="rounded-full transition-transform duration-500 group-hover:scale-110 group-hover:rotate-12 border-2 border-transparent group-hover:border-primary/50 shadow-[0_0_15px_rgba(255,170,0,0.1)] group-hover:shadow-[0_0_20px_rgba(255,170,0,0.7)]" />
+            <Image src="/images/profile-circle.png" alt="HopeEngineer Profile Logo" width={44} height={44} className="h-11 w-11 rounded-full transition-transform duration-500 group-hover:scale-110 group-hover:rotate-12 border-2 border-transparent group-hover:border-primary/50 shadow-[0_0_15px_rgba(255,170,0,0.1)] group-hover:shadow-[0_0_20px_rgba(255,170,0,0.7)]" />
             <span className="hidden font-bold sm:inline-block font-headline text-lg tracking-wide text-gradient-light group-hover:text-white transition-colors">
               HopeEngineer
             </span>

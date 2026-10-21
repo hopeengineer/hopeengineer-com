@@ -30,7 +30,7 @@ function ProductChips({ className = '' }: { className?: string }) {
             <Image src={product.logo} alt="" width={40} height={40} className="h-8 w-8 rounded-full sm:h-10 sm:w-10" />
             <span className="flex flex-col whitespace-nowrap leading-tight">
               <span className="text-sm font-headline font-bold text-foreground sm:text-base">{product.name}</span>
-              <span className="text-[11px] text-white/60 sm:hidden">{product.short}</span>
+              <span className="text-[0.6875rem] text-white/60 sm:hidden">{product.short}</span>
               <span className="hidden text-sm text-white/60 sm:inline">{product.job}</span>
             </span>
             <ArrowRight className="ml-1 hidden h-4 w-4 shrink-0 text-white/40 transition-transform group-hover:translate-x-1 group-hover:text-primary sm:block" aria-hidden="true" />
@@ -72,7 +72,7 @@ export function HeroSection() {
         </div>
 
         {/* One focal visual: me. On smaller screens the wave runs behind the photo, full width. */}
-        <div className="pointer-events-auto relative mx-auto w-full max-w-[220px] sm:max-w-[300px] lg:max-w-[400px] lg:self-center">
+        <div className="pointer-events-auto relative mx-auto w-full max-w-[13.75rem] sm:max-w-[300px] lg:max-w-[400px] lg:self-center">
           <div className="absolute inset-y-0 left-[calc(50%-50vw)] w-screen lg:hidden">
             <WaveCards posts={bestPosts} variant="band" />
           </div>
@@ -82,7 +82,7 @@ export function HeroSection() {
           {/* The sticker */}
           <div className="absolute -bottom-5 -right-6 z-30 rotate-[-5deg] rounded-xl bg-primary px-4 py-3 text-primary-foreground shadow-2xl md:px-5 md:py-4">
             <p className="font-headline text-2xl font-bold leading-none tabular-nums md:text-4xl">31.8K</p>
-            <p className="mt-1 text-[11px] font-semibold uppercase tracking-wider md:text-xs">followers on Threads</p>
+            <p className="mt-1 text-[0.6875rem] font-semibold uppercase tracking-wider md:text-xs">followers on Threads</p>
           </div>
         </div>
 

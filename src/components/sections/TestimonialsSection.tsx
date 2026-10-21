@@ -36,7 +36,7 @@ function QuoteCard({ t }: { t: QuoteTestimonial }) {
   );
 
   return (
-    <figure className="flex w-[300px] shrink-0 flex-col gap-4 rounded-2xl border border-white/10 bg-black/60 p-5 shadow-xl backdrop-blur-xl md:w-[340px]">
+    <figure className="flex w-[18.75rem] shrink-0 flex-col gap-4 rounded-2xl border border-white/10 bg-black/60 p-5 shadow-xl backdrop-blur-xl md:w-[340px]">
       <figcaption className="flex items-center gap-3">
         {t.avatar ? (
           <Image src={t.avatar} alt="" width={40} height={40} className="h-10 w-10 shrink-0 rounded-full object-cover" />
@@ -75,9 +75,9 @@ function ShotCard({ t, onOpen }: { t: ScreenshotTestimonial; onOpen: () => void 
         width={t.width}
         height={t.height}
         sizes="420px"
-        className="h-[200px] w-auto md:h-[240px]"
+        className="h-[12.5rem] w-auto md:h-[240px]"
       />
-      <span className="absolute left-3 top-3 rounded-full bg-black/75 px-3 py-1 text-[11px] font-semibold uppercase tracking-wider text-white backdrop-blur">
+      <span className="absolute left-3 top-3 rounded-full bg-black/75 px-3 py-1 text-[0.6875rem] font-semibold uppercase tracking-wider text-white backdrop-blur">
         {t.source}
       </span>
     </button>

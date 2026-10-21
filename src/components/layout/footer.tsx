@@ -35,7 +35,7 @@ const Footer = () => {
         <div className="flex w-full max-w-sm items-center justify-between sm:w-auto sm:max-w-none sm:justify-center sm:gap-1">
           {SOCIAL_LINKS.map((social) => (
             <Link key={social.name} href={social.href} target="_blank" rel="noopener noreferrer">
-              <Button variant="ghost" size="icon" aria-label={social.name} className="h-7 w-7 text-white/40 hover:text-primary hover:bg-white/5 transition-all min-[375px]:h-8 min-[375px]:w-8 sm:h-10 sm:w-10">
+              <Button variant="ghost" size="icon" aria-label={social.name} className="h-8 w-8 text-white/40 hover:text-primary hover:bg-white/5 transition-all min-[375px]:h-9 min-[375px]:w-9 sm:h-10 sm:w-10">
                 <social.icon className="h-4 w-4" />
               </Button>
             </Link>

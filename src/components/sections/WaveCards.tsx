@@ -30,8 +30,10 @@ function wideLayout(w: number, h: number, posts: number): Layout {
 // Phones and tablets: a band behind the portrait. The wave is made just long enough for every post with a
 // small gap, centred on the screen, so the cards sit close together and loop out of sight past both edges.
 function bandLayout(w: number, h: number, posts: number): Layout {
-  const card = w >= 640 ? 210 : 150;
-  const gap = 14;
+  // Scale with the root font size, which is smaller on phones (globals.css)
+  const rem = typeof document === 'undefined' ? 1 : parseFloat(getComputedStyle(document.documentElement).fontSize) / 16 || 1;
+  const card = (w >= 640 ? 210 : 150) * rem;
+  const gap = 14 * rem;
   const span = (posts * (card + gap)) / 1.06; // the wave adds a little length over its width
   const x = (t: number) => w / 2 - span / 2 + t * span;
   const path = `M ${x(0)} ${0.5 * h} C ${x(0.22)} ${0.3 * h}, ${x(0.38)} ${0.66 * h}, ${x(0.5)} ${0.5 * h} S ${x(0.84)} ${0.32 * h}, ${x(1)} ${0.5 * h}`;
